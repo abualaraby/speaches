@@ -2,6 +2,39 @@
 
     Additional steps are required to use the text-to-speech feature. Please see the [Text-to-Speech](./usage/text-to-speech.md).
 
+## Local Setup Guide - دليل التشغيل المحلي
+
+To run this project locally on your machine:
+
+### Quick Start (البداية السريعة)
+
+1. **Clone the repository (نسخ المستودع):**
+   ```bash
+   git clone https://github.com/abualaraby/speaches.git
+   cd speaches
+   ```
+
+2. **Choose your preferred method (اختر الطريقة المفضلة لديك):**
+
+   **Option A: Python/UV (الخيار أ: بايثون)** - Requires Python 3.12+ and UV
+   ```bash
+   uv venv
+   source .venv/bin/activate
+   uv sync --all-extras
+   uvicorn --factory --host 0.0.0.0 speaches.main:create_app
+   ```
+
+   **Option B: Docker (الخيار ب: دوكر)** - CPU version
+   ```bash
+   docker build --tag speaches .
+   docker run --rm --publish 8000:8000 --name speaches speaches
+   ```
+
+3. **Access the application (الوصول للتطبيق):**
+   Open your browser and visit: `http://localhost:8000`
+
+---
+
 ## Docker Compose (Recommended)
 
 !!! note
@@ -13,25 +46,25 @@ Download the necessary Docker Compose files
 === "CUDA"
 
     ```bash
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.yaml
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.cuda.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.cuda.yaml
     export COMPOSE_FILE=compose.cuda.yaml
     ```
 
 === "CUDA (with CDI feature enabled)"
 
     ```bash
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.yaml
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.cuda.yaml
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.cuda-cdi.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.cuda.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.cuda-cdi.yaml
     export COMPOSE_FILE=compose.cuda-cdi.yaml
     ```
 
 === "CPU"
 
     ```bash
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.yaml
-    curl --silent --remote-name https://raw.githubusercontent.com/speaches-ai/speaches/master/compose.cpu.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.yaml
+    curl --silent --remote-name https://raw.githubusercontent.com/abualaraby/speaches/master/compose.cpu.yaml
     export COMPOSE_FILE=compose.cpu.yaml
     ```
 
@@ -47,7 +80,7 @@ docker compose up --detach
     # NOTE: you need to install and enable [buildx](https://github.com/docker/buildx) for multi-platform builds
 
     # Download the source code
-    git clone https://github.com/speaches-ai/speaches.git
+    git clone https://github.com/abualaraby/speaches.git
     cd speaches
 
     # Build image with CUDA support
@@ -101,7 +134,7 @@ docker compose up --detach
 
     ```bash
     # Download the source code
-    git clone https://github.com/speaches-ai/speaches.git
+    git clone https://github.com/abualaraby/speaches.git
     cd speaches
 
     docker build --tag speaches .
@@ -117,7 +150,7 @@ docker compose up --detach
 ## Python (requires Python 3.12+ and `uv` package manager)
 
 ```bash
-git clone https://github.com/speaches-ai/speaches.git
+git clone https://github.com/abualaraby/speaches.git
 cd speaches
 uv venv
 source .venv/bin/activate
