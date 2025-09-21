@@ -16,7 +16,12 @@ To run this project locally on your machine:
 
 2. **Choose your preferred method (اختر الطريقة المفضلة لديك):**
 
-   **Option A: Python/UV (الخيار أ: بايثون)** - Requires Python 3.12+ and UV
+   **Option A: Automated Setup (الخيار أ: الإعداد التلقائي)**
+   ```bash
+   ./setup-local.sh
+   ```
+
+   **Option B: Manual Python/UV Setup (الخيار ب: الإعداد اليدوي)** - Requires Python 3.12+ and UV
    ```bash
    uv venv
    source .venv/bin/activate
@@ -24,7 +29,7 @@ To run this project locally on your machine:
    uvicorn --factory --host 0.0.0.0 speaches.main:create_app
    ```
 
-   **Option B: Docker (الخيار ب: دوكر)** - CPU version
+   **Option C: Docker (الخيار ج: دوكر)** - CPU version
    ```bash
    docker build --tag speaches .
    docker run --rm --publish 8000:8000 --name speaches speaches

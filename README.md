@@ -5,6 +5,26 @@
 
 `speaches` is an OpenAI API-compatible server supporting streaming transcription, translation, and speech generation. Speach-to-Text is powered by [faster-whisper](https://github.com/SYSTRAN/faster-whisper) and for Text-to-Speech [piper](https://github.com/rhasspy/piper) and [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) are used. This project aims to be Ollama, but for TTS/STT models.
 
+## Quick Local Setup - الإعداد السريع محلياً
+
+```bash
+git clone https://github.com/abualaraby/speaches.git
+cd speaches
+./setup-local.sh
+```
+
+Or run manually:
+```bash
+uv venv
+source .venv/bin/activate
+uv sync --all-extras
+uvicorn --factory --host 0.0.0.0 speaches.main:create_app
+```
+
+Then visit: http://localhost:8000
+
+---
+
 See the documentation for installation instructions and usage: [speaches.ai](https://speaches.ai/)
 
 ## Features:
