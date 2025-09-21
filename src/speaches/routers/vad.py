@@ -43,7 +43,7 @@ def to_ms_speech_timestamps(speech_timestamps: list[SpeechTimestamp]) -> list[Sp
 # TODO: use CudaExecutionProvider
 @router.post("/v1/audio/speech/timestamps")
 def detect_speech_timestamps(
-    audio: AudioFileDependency,
+    file: AudioFileDependency,
     model: Annotated[ModelId, Form()] = MODEL_ID,
     threshold: Annotated[
         float,
@@ -101,7 +101,7 @@ def detect_speech_timestamps(
     speech_timestamps = to_ms_speech_timestamps(
         [
             SpeechTimestamp.model_validate(x)
-            for x in get_speech_timestamps(audio, vad_options=vad_options, sampling_rate=SAMPLE_RATE)
+            for x in get_speech_timestamps(file, vad_options=vad_options, sampling_rate=SAMPLE_RATE)
         ]
     )
     return speech_timestamps
