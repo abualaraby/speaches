@@ -106,7 +106,7 @@ def segments_to_streaming_response(
 def translate_file(
     config: ConfigDependency,
     model_manager: WhisperModelManagerDependency,
-    audio: AudioFileDependency,
+    file: AudioFileDependency,
     model: Annotated[ModelId, Form()],
     prompt: Annotated[str | None, Form()] = None,
     response_format: Annotated[ResponseFormat, Form()] = DEFAULT_RESPONSE_FORMAT,
@@ -120,7 +120,7 @@ def translate_file(
     with model_manager.load_model(model) as whisper:
         whisper_model = BatchedInferencePipeline(model=whisper) if config.whisper.use_batched_mode else whisper
         segments, transcription_info = whisper_model.transcribe(
-            audio,
+            file,
             task="translate",
             initial_prompt=prompt,
             temperature=temperature,
@@ -156,7 +156,7 @@ def transcribe_file(
     config: ConfigDependency,
     model_manager: WhisperModelManagerDependency,
     request: Request,
-    audio: AudioFileDependency,
+    file: AudioFileDependency,
     model: Annotated[ModelId, Form()],
     language: Annotated[str | None, Form()] = None,
     prompt: Annotated[str | None, Form()] = None,
@@ -197,7 +197,7 @@ def transcribe_file(
         with model_manager.load_model(model) as whisper:
             whisper_model = BatchedInferencePipeline(model=whisper) if config.whisper.use_batched_mode else whisper
             segments, transcription_info = whisper_model.transcribe(
-                audio,
+                file,
                 task="transcribe",
                 language=language,
                 initial_prompt=prompt,
